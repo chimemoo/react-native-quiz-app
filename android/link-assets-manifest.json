@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/sounds/sound_error.mp3",
+      "sha1": "8cddaacaec46cdca7b80e8a51310af4703f96610"
+    },
+    {
+      "path": "assets/sounds/sound_success.mp3",
+      "sha1": "1c801d1338bbec897319c5f637a0588f9efac91f"
+    }
+  ]
+}
