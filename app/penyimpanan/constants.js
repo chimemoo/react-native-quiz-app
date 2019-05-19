@@ -1,0 +1,2 @@
+const ADD_DATA = 'ADD_DATA';
+const DELETE_DATA = 'DELETE_DATA';

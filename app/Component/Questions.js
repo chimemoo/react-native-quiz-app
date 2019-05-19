@@ -2,10 +2,11 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { RadioGroup, RadioButton } from "react-native-flexi-radio-button";
 
+
 export default class Question extends React.Component {
   constructor() {
     super();
-
+ 
     this.state = {
       answer: null
     };

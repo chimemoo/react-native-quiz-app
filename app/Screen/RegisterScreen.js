@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, View, TextInput, Text, TouchableOpacity, ImageBackground} from 'react-native';
-
 import { connect } from 'react-redux';
-import { addPerson, deletePerson } from '../reducer/actions';
+import { addData } from '../penyimpanan/action';
+
 
 var SQLite = require('react-native-sqlite-storage');
 var db = SQLite.openDatabase({name:'databasesik.db', createFromLocation:'~databasesik.db'})
@@ -19,7 +19,10 @@ class RegisterScreen extends Component {
     };
   }
 
+  
   componentDidMount(){
+    console.log(this.props)
+
     setTimeout(() => {
         if(this.state.username != ''){
           this.props.navigation.navigate('DashboardTabRoutes');
@@ -34,9 +37,8 @@ class RegisterScreen extends Component {
         var len = results.rows.length;
         if(len > 0) {
           this.props.navigation.navigate('DashboardTabRoutes', {username : username} );
-          this.props.dispatchAddPerson({
-            name: this.state.inputValue,
-          });    
+
+          this.props.dispatch({type:'ADD_DATA',username:username});  
         }
         else {
           this.props.navigation.navigate('SelectAvatarScreen', {username : username} );
@@ -131,21 +133,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps (state) {
-  return {
-    people: state.people.people
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    dispatchAddPerson: (person) => dispatch(addPerson(person)),
-    dispatchdeletePerson: (person) => dispatch(deletePerson(person))
-  }
-}
 
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RegisterScreen);
+
+export default connect()(RegisterScreen);

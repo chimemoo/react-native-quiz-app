@@ -23,12 +23,20 @@ import SettingScreen from './app/Screen/SettingScreen';
 import HelpScreen from './app/Screen/HelpScreen';
 import AboutScreen from './app/Screen/AboutScreen';
 import QuizScreen from './app/Screen/QuizScreen';
+import QuizSelectItem from './app/Screen/QuizSelectItem';
+import QuizStart from './app/Screen/QuizStart';
 
 import GameListScreen from './app/components/Games/GameListScreen';
 import GameBriefScreen from './app/components/Games/GameBriefScreen';
 import GameResultsScreen from './app/components/Games/GameResultsScreen';
-import { Provider } from 'react-redux'
-import configureStore from './app/reducer/configureStore'
+import CustomHeader from './app/Component/CustomHeader';
+
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './app/penyimpanan/reducers';
+
+const store = createStore(rootReducer);
+
 
 const HomeNavigator = createStackNavigator(
   {
@@ -40,6 +48,18 @@ const HomeNavigator = createStackNavigator(
       },
       QuizScreen: {
         screen: QuizScreen,
+        navigationOptions: {
+          header:null
+        },
+      },
+      QuizSelectItem: {
+        screen: QuizSelectItem,
+        navigationOptions: {
+          header:null
+        },
+      },
+      QuizStart: {
+        screen: QuizStart,
         navigationOptions: {
           header:null
         },
@@ -132,6 +152,20 @@ const DashboardTabRoutes = createMaterialTopTabNavigator({
 );
 
 
+const DashTab = createAppContainer(DashboardTabRoutes);
+
+export class DashboardTab extends React.Component {
+  render(){
+    return(
+      <View style={{flex:1}}>
+        <View style={{flex:0.06}}><CustomHeader/></View>
+        <View style={{flex:0.94}}><DashTab/></View>
+      </View>
+      );
+  }
+}
+
+
 
 const RegNavigator = createStackNavigator(
   {
@@ -148,14 +182,14 @@ const RegNavigator = createStackNavigator(
         },
       },
       DashboardTabRoutes:{
-        screen: DashboardTabRoutes,
+        screen: DashboardTab,
         navigationOptions: {
           header:null
         },
       },
   },
   {
-    initialRouteName: 'RegisterScreen',
+    initialRouteName: 'RegisterScreen', //BALIKIN LAGI KE RegisterScreen
   }
 );
 
@@ -176,12 +210,13 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'LoadingScreen',
+    initialRouteName: 'RegNavigator', //BALIKIN LAGI KE LoadingScreen
   }
 );
 
 const AppContainer = createAppContainer(AppNavigator);
-const store = configureStore()
+
+
 
 export default class App extends React.Component {
   render() {

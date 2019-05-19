@@ -1,24 +1,24 @@
 import Icon from "react-native-vector-icons/Ionicons";
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet,Text } from "react-native";
 
 
-const CustomHeader = ({ navigation }) => (
-  <View style={[styles.container]}>
-    <Icon
-      name="md-menu"
-      size={32}
-      color="black"
-      onPress={() => navigation.openDrawer()}
-    />
+const CustomHeader = () => (
+  <View style={styles.container}>
+    <Text style={styles.text}>SIK</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomWidth: 2,
-    height: 70,
-    paddingTop: 20
+    flex:1,
+    justifyContent: 'center',
+    alignContent: 'flex-start'
+  },
+  text :{
+    fontSize: 28,
+    color: '#FF0000',
+    marginLeft: 20
   }
 });
 

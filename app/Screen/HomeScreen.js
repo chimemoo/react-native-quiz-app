@@ -6,36 +6,52 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  Image
 } from 'react-native';
-
 import { connect } from 'react-redux';
-import { addPerson, deletePerson } from '../reducer/actions';
+import { addData } from '../penyimpanan/action';
 
 class HomeScreen extends Component {
   constructor(props){
 		super(props);
-  
+    console.log(props);
 		this.state = {
-			user: ''
+			user: '',
+      username:props.username
 		};
   }
   
+
 	UserRegFunction = () =>{
-    	this.props.navigation.navigate('QuizScreen');
+    	this.props.navigation.navigate('QuizSelectItem');
+    }
+
+    componentWillMount(){
+      this.setState({user : addData('ADD_DATA')});
+      console.log(this.state.user);
+
     }
 
   render() {
-    const { navigation } = this.props;
-    const username = navigation.getParam('username');
-    this.state.user = this.props.people;
+    
 
     return (
       <View style={{flex: 1}}>
-        <View style={{flex:70,padding:10}}>
-          <Text style={{marginTop:20}}>{this.state.user}</Text>
+        <View style={{flex:70,padding:10, flexDirection: 'row', justifyContent: 'center'}}>
+          <View style={{flexDirection: 'column'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'center', marginBottom: 20}}>
+              <Text style={{marginTop:20}}>AHA</Text>
+            </View>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Image
+                source={require('./../../assets/avatarMale.png')}
+                style={{width: 200, height: 200}}   
+              />
+            </View>
+          </View>
         </View>
-        <View style={{flex:30}}>
+        <View style={{flex:30, flexDirection: 'row', justifyContent: 'center'}}>
           <TouchableOpacity style={styles.mulai} onPress={this.UserRegFunction}>
             <Text style={{color:'#fff',fontWeight:'bold'}}>
               Mulai
@@ -50,29 +66,19 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
 	mulai:{
 	    backgroundColor:'#FF0000',
-	    flex:0.8,
-	    padding:10,
-	    borderRadius: 10,
+	    width: 100,
+      height: 50,
+	    borderRadius: 5,
 	    alignItems:'center',
 	    justifyContent:'center',
 	    flexDirection:'row'
 	}
 });
 
-function mapStateToProps (state) {
-  return {
-    people: state.people.people
-  }
+const mapStateToProps = state => {
+  const { username } = state;
+  const usr = username[0];
+  return { username: usr}
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    dispatchAddPerson: (person) => dispatch(addPerson(person)),
-    dispatchdeletePerson: (person) => dispatch(deletePerson(person))
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);
