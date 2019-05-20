@@ -12,14 +12,15 @@ import {
 import { connect } from 'react-redux';
 import { addData } from '../penyimpanan/action';
 
+
 class HomeScreen extends Component {
   constructor(props){
 		super(props);
-    console.log(props);
 		this.state = {
 			user: '',
       username:props.username
-		};
+    };
+    
   }
   
 
@@ -28,20 +29,19 @@ class HomeScreen extends Component {
     }
 
     componentWillMount(){
-      this.setState({user : addData('ADD_DATA')});
-      console.log(this.state.user);
-
+      if(this.state.username!=null){
+        console.log(this.state.username);
+      }
     }
 
   render() {
     
-
     return (
       <View style={{flex: 1}}>
         <View style={{flex:70,padding:10, flexDirection: 'row', justifyContent: 'center'}}>
           <View style={{flexDirection: 'column'}}>
             <View style={{flexDirection: 'row', justifyContent: 'center', marginBottom: 20}}>
-              <Text style={{marginTop:20}}>AHA</Text>
+              <Text style={{marginTop:20}}>{this.state.username.username}</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <Image

@@ -49,7 +49,7 @@ class QuizStart extends Component {
 		const { navigation } = this.props;
     	const kode = navigation.getParam('kode');
 	    await this.setState({ loading: true });
-	    const response = await fetch(`https://jsonblob.com/api/jsonBlob/af61c8c8-7a34-11e9-9927-6565e971c57a`); //84b3b001-7a33-11e9-9927-07a950f2cfc7
+	    const response = await fetch(`https://jsonblob.com/api/jsonBlob/84b3b001-7a33-11e9-9927-07a950f2cfc7`); //84b3b001-7a33-11e9-9927-07a950f2cfc7
 	    const questions = await response.json();
 	    const {quizzes} = questions.games[kode];
 	    quizzes.forEach(item => {
@@ -140,7 +140,7 @@ class QuizStart extends Component {
 		        		</Text>
 	        		</View>
 	        		<View style={{flex:0.2}}>
-	        			<Text style={{fontSize: 30, color: '#FF0000',textAlign: 'center'}}>{(this.state.results.score/this.state.totalQuestion)*100} %</Text>
+	        			<Text style={{fontSize: 30, color: '#FF0000',textAlign: 'center'}}>{parseFloat((this.state.results.score/this.state.totalQuestion)*100).toFixed(2)} %</Text>
 	        		</View>
 	        		<View style={{flex:0.4, justifyContent: 'flex-end',flexDirection: 'column' }}>
 	        			<TouchableOpacity 

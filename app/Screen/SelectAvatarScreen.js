@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import { StyleSheet,View, ImageBackground,Text,Image, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
 var SQLite = require('react-native-sqlite-storage');
-var db = SQLite.openDatabase({name:'databasesik.db', createFromLocation:'~databasesik.db'})
+var db = SQLite.openDatabase({name:'databasesik1.db', createFromLocation:'~databasesik1.db'})
 
 class SelectAvatarScreen extends Component {
 	
@@ -21,6 +22,7 @@ class SelectAvatarScreen extends Component {
 		tx.executeSql( `INSERT INTO user (nickname,pict) VALUES ("${username}",1)`,[],(tx, results) => {
 			if(results.rowsAffected > 0) {
 				// exists owner name John
+				this.props.dispatch({type:'ADD_DATA',username:username});
 				this.props.navigation.navigate('DashboardTabRoutes', {username : username} );
 			}
 			}, (e)=>{console.log(e); alert("Gagal");}
@@ -34,6 +36,7 @@ class SelectAvatarScreen extends Component {
 		tx.executeSql( `INSERT INTO user (nickname,pict) VALUES ("${username}",2)`,[],(tx, results) => {
 				if(results.rowsAffected > 0) {
 				// exists owner name John
+					this.props.dispatch({type:'ADD_DATA',username:username});  
 					this.props.navigation.navigate('DashboardTabRoutes', {username : username} );
 				}
 			}, (e)=>{console.log(e); alert("Gagal");}
@@ -92,4 +95,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default SelectAvatarScreen;
+export default connect()(SelectAvatarScreen);

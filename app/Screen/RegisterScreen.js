@@ -21,7 +21,6 @@ class RegisterScreen extends Component {
 
   
   componentDidMount(){
-    console.log(this.props)
 
     setTimeout(() => {
         if(this.state.username != ''){
@@ -36,9 +35,10 @@ class RegisterScreen extends Component {
       tx.executeSql(`SELECT * FROM user WHERE nickname='${username}'`,[],(tx, results) => {
         var len = results.rows.length;
         if(len > 0) {
+          this.props.dispatch({type:'ADD_DATA',username:username});  
           this.props.navigation.navigate('DashboardTabRoutes', {username : username} );
 
-          this.props.dispatch({type:'ADD_DATA',username:username});  
+          
         }
         else {
           this.props.navigation.navigate('SelectAvatarScreen', {username : username} );

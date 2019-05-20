@@ -31,7 +31,7 @@ class QuizSelectItem extends Component {
   		</TouchableOpacity>
 
   		<TouchableOpacity style={styles.tombol} onPress={() =>{this.props.navigation.navigate('QuizStart',{kode: 3})}}>
-  			<Text style={{alignSelf: 'center', fontWeight: 'bold',fontSize: 28}}>EKOLOGI</Text>
+  			<Text style={{alignSelf: 'center', fontWeight: 'bold',fontSize: 28}}>LAGU DAERAH</Text>
   		</TouchableOpacity>
 
       </View>
