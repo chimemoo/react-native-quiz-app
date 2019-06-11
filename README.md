@@ -9,3 +9,9 @@ internet untuk mengakses soal-soal yang dibutuhkan.
 
 ## Contributor
 - Christ Memory Sitorus
+
+## Cara instalasi
+1. Clone/Download Repository ini
+2. Pastikan sudah menginstall NodeJS
+3. Buka CMD/Terminal dan masuk ke dalam lokasi folder aplikasi
+4. Ketik npm install lalu enter
